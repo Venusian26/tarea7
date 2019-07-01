@@ -26,7 +26,7 @@ var modelo = new Modelo({
     curp:curp1,
     nombre:'Juan Ramon Figueroa Cueto',
     email:'jurafigueroacu@ittepic.edu',
-    pasword:'JuanFigueroa1$',
+    password:'JuanFigueroa1$',
     edad:moment().diff(moment(curp1.substring(4,10),'YYMMDD').format("YYYYMMDD"),'years',false),
     fechaNac:moment(curp1.substring(4,10),'YYMMDD').format("YYYY-MM-DD"),
     domicilioCalle: 'Tepic',

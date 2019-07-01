@@ -13,6 +13,7 @@
     "@sendgrid/mail": "^6.4.0",
     "bcrypt": "^3.0.6",
     "moment": "^2.24.0",
-    "mongoose": "^5.6.2"
+    "mongoose": "^5.6.2",
+    "mongoose-bcrypt": "^1.6.0"
   }
 }
