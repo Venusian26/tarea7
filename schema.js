@@ -61,5 +61,5 @@ var demoSchema = new mongoose.Schema({
 
 });
 
-demoSchema.plugin(require('mongoose-bcrypt'));
+//demoSchema.plugin(require('mongoose-bcrypt'));
 module.exports = demoSchema;
