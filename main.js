@@ -28,7 +28,7 @@ var curp1 = 'FICJ960913HNTGTN07';
 var modelo = new Modelo({
     curp: curp1,
     nombre: 'Juan Ramon Figueroa Cueto',
-    email: 'deyaespinosaab@ittepic.edu.mx',
+    email: 'jurafigueroacu@ittepic.edu.mx',
     password: 'JuanFigueroa1$',
     edad: moment().diff(moment(curp1.substring(4, 10), 'YYMMDD').format("YYYYMMDD"), 'years', false),
     fechaNac: moment(curp1.substring(4, 10), 'YYMMDD').format("YYYY-MM-DD"),
@@ -43,18 +43,19 @@ modelo.save(function (error) {
         process.exit(1);
     } 
     console.log("Saved!!");
-    //sendmail.send(envRegistro);
+    sendmail.send(envRegistro);
 });
+
 
 const envRegistro = {
     to: modelo.email,
     subject: "TAREA 07 - AE2019V",
     text: `Este es un mensaje que se "envio" a ${modelo.nombre}`,
-    html: `<strong>Welcome to your new account!</strong>`
+    html: `<strong><h1>Welcome to your new account!</h1></strong>`
 }
 
 //LOGIN
-Modelo.find({email:"jurafgueroacu@ittepic.edu",password:"1234"}, (error, docs) => {
+Modelo.find({email:"jurafigueroacu@ittepic.edu",password:"1234"}, (error, docs) => {
     if (error) {
         console.log("<--------LOGIN--------->");
         console.log("Login inválido");
@@ -64,10 +65,11 @@ Modelo.find({email:"jurafgueroacu@ittepic.edu",password:"1234"}, (error, docs) =
     console.log("<--------LOGIN--------->");
     console.log("Login válido");
     console.log(docs);
+    
 });
 
 //Recuperar Password
-Modelo.find({email:"deyaespinosaab@ittepic.edu.mx",fechaNac:"1996-09-13"}, (error, docs) => {
+Modelo.find({email:"jurafigueroacu@ittepic.edu.mx",fechaNac:"1996-09-13"}, (error, docs) => {
     if (error) {
         console.log(error);
         process.exit(1);
@@ -81,5 +83,5 @@ const envPassword = {
     to: modelo.email,
     subject: "TAREA 07 - AE2019V",
     text: `Este es un mensaje que se "envio" a ${modelo.nombre}`,
-    html: `<strong>The password is</strong> ${modelo.password}`
+    html: `<strong>The password is</strong><h2> ${modelo.password}</h2>`
 }
