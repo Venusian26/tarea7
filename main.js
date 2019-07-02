@@ -27,24 +27,24 @@ var curp1 = 'FICJ960913HNTGTN07';
 
 var modelo = new Modelo({
     curp: curp1,
-    nombre: 'Juan Ramon Figueroa Cueto',
-    email: 'deyaespinosaab@ittepic.edu.mx',
-    password: 'JuanFigueroa1$',
+    nombre: 'Juan mon Figueroa Cueto',
+    email: 'dspinosaab@ittepic.edu',
+    password: 'JunFigeroaa1$',
     edad: moment().diff(moment(curp1.substring(4, 10), 'YYMMDD').format("YYYYMMDD"), 'years', false),
     fechaNac: moment(curp1.substring(4, 10), 'YYMMDD').format("YYYY-MM-DD"),
     domicilioCalle: 'Tepic',
     cp: '5632'
 });
 
-//Guardaremos el modelo en mongo
+/*//Guardaremos el modelo en mongo
 modelo.save(function (error) {
     if (error) {
         console.log(error);
         process.exit(1);
-    } 
+    }
     console.log("Saved!!");
     //sendmail.send(envRegistro);
-});
+});*/
 
 const envRegistro = {
     to: modelo.email,
@@ -54,7 +54,7 @@ const envRegistro = {
 }
 
 //LOGIN
-Modelo.find({email:"jurafgueroacu@ittepic.edu",password:"1234"}, (error, docs) => {
+Modelo.find({ email: "jurafgueroacu@ittepic.edu", password: "1234" }, (error, docs) => {
     if (error) {
         console.log("<--------LOGIN--------->");
         console.log("Login inválido");
@@ -67,19 +67,16 @@ Modelo.find({email:"jurafgueroacu@ittepic.edu",password:"1234"}, (error, docs) =
 });
 
 //Recuperar Password
-Modelo.find({email:"deyaespinosaab@ittepic.edu.mx",fechaNac:"1996-09-13"}, (error, docs) => {
+Modelo.findOne({ email: "deyaespinosaab@ittepic.edu.mx", fechaNac: "1996-09-13" }, (error, docs) => {
     if (error) {
         console.log(error);
         process.exit(1);
     }
     console.log("<--------SEND PASSWORD--------->");
-    sendmail.send(envPassword);
-    console.log(docs);
+    sendmail.send({
+        to: docs.email,
+        subject: "TAREA 07 - AE2019V",
+        text: `Este es un mensaje que se "envio" a ${docs.nombre}`,
+        html: `<strong>The password is</strong> ${docs.password}`
+    });
 });
-
-const envPassword = {
-    to: modelo.email,
-    subject: "TAREA 07 - AE2019V",
-    text: `Este es un mensaje que se "envio" a ${modelo.nombre}`,
-    html: `<strong>The password is</strong> ${modelo.password}`
-}
